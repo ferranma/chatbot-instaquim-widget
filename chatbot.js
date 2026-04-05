@@ -33,7 +33,7 @@ function toggle(){open=!open;win.classList.toggle('open',open);if(open){tog.quer
 tog.addEventListener('click',toggle);
 cls.addEventListener('click',function(){open=false;win.classList.remove('open')});
 
-function cleanMsg(t){return t.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}
+function cleanMsg(t){return t.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>').replace(/(https?:\/\/[^\s<)"]+)/g,function(url){return '<a href="'+url+'" target="_blank" style="color:'+CFG.colorLight+';text-decoration:underline">'+url.replace(/https?:\/\/(www\.)?/,'').substring(0,40)+'</a>'})}
 function addMsg(t,isBot){var d=document.createElement('div');d.className='msg '+(isBot?'bot':'usr');d.innerHTML='<div class="bbl">'+cleanMsg(t)+'</div>';bod.appendChild(d);bod.scrollTop=bod.scrollHeight}
 var typingTexts={ca:'Escrivint',es:'Escribiendo',en:'Typing',fr:'En train d\'\u00e9crire',pt:'Escrevendo'};
 function showTyping(){var d=document.createElement('div');d.className='msg bot';d.id='cb-typing';d.innerHTML='<div class="bbl"><div class="typ"><span></span><span></span><span></span><span class="typ-txt">'+(typingTexts[lang]||'...')+'</span></div></div>';bod.appendChild(d);bod.scrollTop=bod.scrollHeight}
