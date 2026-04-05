@@ -24,7 +24,7 @@ S.textContent='#cb-w *{box-sizing:border-box;margin:0;padding:0;font-family:-app
 document.head.appendChild(S);
 
 var W=document.createElement('div');W.id='cb-w';
-W.innerHTML='<button id="cb-tog">\u{1F4AC}<span class="cb-bdg">1</span></button><div id="cb-win"><div id="cb-hdr"><div class="av"><img src="https://www.instaquim.com/img/favicon.ico" alt="Instaquim"></div><div class="inf"><h3>'+CFG.name+'</h3><p>'+T.sub+'</p></div><button class="cls" id="cb-cls">\u00d7</button></div><div id="cb-bod"></div><div id="cb-inp"><input type="text" id="cb-txt" placeholder="'+T.placeholder+'" autocomplete="off"><button id="cb-snd">\u27A4</button></div></div>';
+W.innerHTML='<button id="cb-tog">\u{1F4AC}<span class="cb-bdg">1</span></button><div id="cb-win"><div id="cb-hdr"><div class="av"><img src="https://cdn.jsdelivr.net/gh/ferranma/chatbot-instaquim-widget@main/icon.png" alt="Instaquim"></div><div class="inf"><h3>'+CFG.name+'</h3><p>'+T.sub+'</p></div><button class="cls" id="cb-cls">\u00d7</button></div><div id="cb-bod"></div><div id="cb-inp"><input type="text" id="cb-txt" placeholder="'+T.placeholder+'" autocomplete="off"><button id="cb-snd">\u27A4</button></div></div>';
 document.body.appendChild(W);
 
 var tog=document.getElementById('cb-tog'),win=document.getElementById('cb-win'),cls=document.getElementById('cb-cls'),bod=document.getElementById('cb-bod'),txt=document.getElementById('cb-txt'),snd=document.getElementById('cb-snd'),open=false,started=false;
