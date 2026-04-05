@@ -63,7 +63,7 @@ function sendMsg(text){
 snd.addEventListener('click',function(){sendMsg(txt.value)});
 txt.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg(txt.value)});
 
-function startChat(){setTimeout(function(){addMsg(T.hello,true);setTimeout(function(){showSuggestions(T.suggestions)},400)},300)}
+function startChat(){setTimeout(function(){addMsg(T.hello,true)},300)}
 
 setTimeout(function(){if(!open&&!sessionStorage.getItem('cb-shown')){toggle();sessionStorage.setItem('cb-shown','1')}},25000);
 })();
