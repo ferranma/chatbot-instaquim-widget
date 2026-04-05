@@ -33,7 +33,14 @@ function toggle(){open=!open;win.classList.toggle('open',open);if(open){tog.quer
 tog.addEventListener('click',toggle);
 cls.addEventListener('click',function(){open=false;win.classList.remove('open')});
 
-function cleanMsg(t){return t.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>').replace(/(https?:\/\/[^\s<)"]+)/g,function(url){return '<a href="'+url+'" target="_blank" style="color:'+CFG.colorLight+';text-decoration:underline">'+url.replace(/https?:\/\/(www\.)?/,'').substring(0,40)+'</a>'})}
+function cleanMsg(t){
+  t=t.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
+  // Only convert bare URLs (not already inside href="...")
+  t=t.replace(/(?<!href=")(?<!href=')(https?:\/\/[^\s<)"']+)/g,function(url){return '<a href="'+url+'" target="_blank" style="color:'+CFG.colorLight+';text-decoration:underline">'+url.replace(/https?:\/\/(www\.)?/,'').substring(0,40)+'</a>'});
+  // Style existing <a> tags that don't have style
+  t=t.replace(/<a href="([^"]+)"([^>]*)>(?!.*style)/g,'<a href="$1"$2 style="color:'+CFG.colorLight+';text-decoration:underline">');
+  return t;
+}
 function addMsg(t,isBot){var d=document.createElement('div');d.className='msg '+(isBot?'bot':'usr');d.innerHTML='<div class="bbl">'+cleanMsg(t)+'</div>';bod.appendChild(d);bod.scrollTop=bod.scrollHeight}
 var typingTexts={ca:'Escrivint',es:'Escribiendo',en:'Typing',fr:'En train d\'\u00e9crire',pt:'Escrevendo'};
 function showTyping(){var d=document.createElement('div');d.className='msg bot';d.id='cb-typing';d.innerHTML='<div class="bbl"><div class="typ"><span></span><span></span><span></span><span class="typ-txt">'+(typingTexts[lang]||'...')+'</span></div></div>';bod.appendChild(d);bod.scrollTop=bod.scrollHeight}
@@ -45,24 +52,23 @@ var sessionId=Date.now().toString(36)+Math.random().toString(36).substr(2,5);
 
 function typeMsg(text,callback){
   var clean=cleanMsg(text);
-  // Split into text chunks and HTML tags
-  var parts=[];var regex=/(<[^>]+>)/g;var last=0;var match;
-  while((match=regex.exec(clean))!==null){if(match.index>last)parts.push({type:'text',val:clean.substring(last,match.index)});parts.push({type:'tag',val:match[1]});last=regex.lastIndex}
-  if(last<clean.length)parts.push({type:'text',val:clean.substring(last)});
   var d=document.createElement('div');d.className='msg bot';
   var bbl=document.createElement('div');bbl.className='bbl';
   d.appendChild(bbl);bod.appendChild(d);
-  var pi=0;var ci=0;var speed=12;
-  function step(){
-    if(pi>=parts.length){bod.scrollTop=bod.scrollHeight;if(callback)callback();return}
-    var part=parts[pi];
-    if(part.type==='tag'){bbl.innerHTML+=part.val;pi++;ci=0;step();return}
-    if(ci>=part.val.length){pi++;ci=0;step();return}
-    bbl.innerHTML+=part.val[ci];ci++;
+  // Set full HTML but clip with max-height animation
+  bbl.innerHTML=clean;
+  bbl.style.maxHeight='0';bbl.style.overflow='hidden';bbl.style.transition='none';
+  var fullHeight=bbl.scrollHeight;
+  var currentHeight=0;
+  var inc=Math.max(2,fullHeight/40);
+  function reveal(){
+    currentHeight+=inc;
+    if(currentHeight>=fullHeight){bbl.style.maxHeight='none';bbl.style.overflow='visible';bod.scrollTop=bod.scrollHeight;if(callback)callback();return}
+    bbl.style.maxHeight=currentHeight+'px';
     bod.scrollTop=bod.scrollHeight;
-    setTimeout(step,speed+Math.random()*15);
+    setTimeout(reveal,40);
   }
-  step();
+  setTimeout(reveal,100);
 }
 
 function sendMsg(text){
