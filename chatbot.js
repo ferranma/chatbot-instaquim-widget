@@ -33,7 +33,8 @@ function toggle(){open=!open;win.classList.toggle('open',open);if(open){tog.quer
 tog.addEventListener('click',toggle);
 cls.addEventListener('click',function(){open=false;win.classList.remove('open')});
 
-function addMsg(t,isBot){var d=document.createElement('div');d.className='msg '+(isBot?'bot':'usr');d.innerHTML='<div class="bbl">'+t+'</div>';bod.appendChild(d);bod.scrollTop=bod.scrollHeight}
+function cleanMsg(t){return t.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}
+function addMsg(t,isBot){var d=document.createElement('div');d.className='msg '+(isBot?'bot':'usr');d.innerHTML='<div class="bbl">'+cleanMsg(t)+'</div>';bod.appendChild(d);bod.scrollTop=bod.scrollHeight}
 function showTyping(){var d=document.createElement('div');d.className='msg bot';d.id='cb-typing';d.innerHTML='<div class="bbl"><div class="typ"><span></span><span></span><span></span></div></div>';bod.appendChild(d);bod.scrollTop=bod.scrollHeight}
 function hideTyping(){var t=document.getElementById('cb-typing');if(t)t.remove()}
 function showSuggestions(items){var d=document.createElement('div');d.className='sug';items.forEach(function(s){var b=document.createElement('button');b.textContent=s;b.addEventListener('click',function(){d.remove();sendMsg(s)});d.appendChild(b)});bod.appendChild(d);bod.scrollTop=bod.scrollHeight}
