@@ -38,20 +38,25 @@ function showTyping(){var d=document.createElement('div');d.className='msg bot';
 function hideTyping(){var t=document.getElementById('cb-typing');if(t)t.remove()}
 function showSuggestions(items){var d=document.createElement('div');d.className='sug';items.forEach(function(s){var b=document.createElement('button');b.textContent=s;b.addEventListener('click',function(){d.remove();sendMsg(s)});d.appendChild(b)});bod.appendChild(d);bod.scrollTop=bod.scrollHeight}
 
+var chatHistory=[];
+
 function sendMsg(text){
   if(!text.trim())return;
   addMsg(text,false);
   txt.value='';
+  chatHistory.push({role:'user',content:text});
   showTyping();
   fetch(API_URL,{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({message:text,lang:lang})
+    body:JSON.stringify({messages:chatHistory,lang:lang})
   })
   .then(function(r){return r.json()})
   .then(function(data){
     hideTyping();
-    addMsg(data.reply||T.offline,true);
+    var reply=data.reply||T.offline;
+    addMsg(reply,true);
+    chatHistory.push({role:'assistant',content:reply});
     if(typeof gtag==='function')gtag('event','chatbot_interaction',{event_category:'chatbot',event_label:text});
   })
   .catch(function(){
