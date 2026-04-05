@@ -41,6 +41,7 @@ function hideTyping(){var t=document.getElementById('cb-typing');if(t)t.remove()
 function showSuggestions(items){var d=document.createElement('div');d.className='sug';items.forEach(function(s){var b=document.createElement('button');b.textContent=s;b.addEventListener('click',function(){d.remove();sendMsg(s)});d.appendChild(b)});bod.appendChild(d);bod.scrollTop=bod.scrollHeight}
 
 var chatHistory=[];
+var sessionId=Date.now().toString(36)+Math.random().toString(36).substr(2,5);
 
 function typeMsg(text,callback){
   var clean=cleanMsg(text);
@@ -70,7 +71,7 @@ function sendMsg(text){
   fetch(API_URL,{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({messages:chatHistory,lang:lang})
+    body:JSON.stringify({messages:chatHistory,lang:lang,sessionId:sessionId})
   })
   .then(function(r){return r.json()})
   .then(function(data){
