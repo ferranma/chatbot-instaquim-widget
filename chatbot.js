@@ -1,5 +1,5 @@
 (function(){
-var CFG={name:'Instaquim',color:'#1a5276',phone:'938 402 668',email:'info@instaquim.com'};
+var CFG={name:'Instaquim',color:'#1a5276',phone:'93 889 13 44',email:'instaquim@instaquim.com'};
 var API_URL='https://chatbot-instaquim.exterior-046.workers.dev';
 
 var S=document.createElement('style');
