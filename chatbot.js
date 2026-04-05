@@ -45,19 +45,22 @@ var sessionId=Date.now().toString(36)+Math.random().toString(36).substr(2,5);
 
 function typeMsg(text,callback){
   var clean=cleanMsg(text);
+  // Split into text chunks and HTML tags
+  var parts=[];var regex=/(<[^>]+>)/g;var last=0;var match;
+  while((match=regex.exec(clean))!==null){if(match.index>last)parts.push({type:'text',val:clean.substring(last,match.index)});parts.push({type:'tag',val:match[1]});last=regex.lastIndex}
+  if(last<clean.length)parts.push({type:'text',val:clean.substring(last)});
   var d=document.createElement('div');d.className='msg bot';
   var bbl=document.createElement('div');bbl.className='bbl';
   d.appendChild(bbl);bod.appendChild(d);
-  var i=0;var speed=12;var tags=false;
+  var pi=0;var ci=0;var speed=12;
   function step(){
-    if(i>=clean.length){bod.scrollTop=bod.scrollHeight;if(callback)callback();return}
-    var ch=clean[i];
-    if(ch==='<'){tags=true;var end=clean.indexOf('>',i);if(end>-1){bbl.innerHTML+=clean.substring(i,end+1);i=end+1}else{bbl.innerHTML+=ch;i++}}
-    else{bbl.innerHTML+=ch;i++}
+    if(pi>=parts.length){bod.scrollTop=bod.scrollHeight;if(callback)callback();return}
+    var part=parts[pi];
+    if(part.type==='tag'){bbl.innerHTML+=part.val;pi++;ci=0;step();return}
+    if(ci>=part.val.length){pi++;ci=0;step();return}
+    bbl.innerHTML+=part.val[ci];ci++;
     bod.scrollTop=bod.scrollHeight;
-    var delay=tags?0:speed+Math.random()*15;
-    tags=false;
-    setTimeout(step,delay);
+    setTimeout(step,speed+Math.random()*15);
   }
   step();
 }
