@@ -35,8 +35,13 @@ cls.addEventListener('click',function(){open=false;win.classList.remove('open')}
 
 function cleanMsg(t){
   t=t.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
-  // Only convert bare URLs (not already inside href="...")
-  t=t.replace(/(?<!href=")(?<!href=')(https?:\/\/[^\s<)"']+)/g,function(url){return '<a href="'+url+'" target="_blank" style="color:'+CFG.colorLight+';text-decoration:underline">'+url.replace(/https?:\/\/(www\.)?/,'').substring(0,40)+'</a>'});
+  // Protect existing HTML tags from URL conversion
+  var tags=[];
+  t=t.replace(/<[^>]+>/g,function(m){tags.push(m);return '\x00'+(tags.length-1)+'\x00'});
+  // Convert bare URLs to links
+  t=t.replace(/(https?:\/\/[^\s<)"']+)/g,function(url){return '<a href="'+url+'" target="_blank" style="color:'+CFG.colorLight+';text-decoration:underline">'+url.replace(/https?:\/\/(www\.)?/,'').substring(0,40)+'</a>'});
+  // Restore tags
+  t=t.replace(/\x00(\d+)\x00/g,function(m,i){return tags[parseInt(i)]});
   // Style existing <a> tags that don't have style
   t=t.replace(/<a href="([^"]+)"([^>]*)>(?!.*style)/g,'<a href="$1"$2 style="color:'+CFG.colorLight+';text-decoration:underline">');
   return t;
