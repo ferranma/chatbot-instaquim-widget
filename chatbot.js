@@ -11,11 +11,11 @@ else if(path.indexOf('/pt')===0) lang='pt';
 else lang='es';
 
 var TEXTS={
-  ca:{sub:'Fabricant de productes de neteja',placeholder:'Escriu la teva consulta...',hello:'Hola! \u{1F44B} S\u00f3c l\'assistent d\'<b>Instaquim</b>. Com et puc ajudar?',suggestions:['Productes','Marca blanca','Mostres gratu\u00eftes','Sectors','Contactar'],offline:'No he pogut connectar. Truca al <b>'+CFG.phone+'</b>.'},
-  es:{sub:'Fabricante de productos de limpieza',placeholder:'Escribe tu consulta...',hello:'\u00a1Hola! \u{1F44B} Soy el asistente de <b>Instaquim</b>. \u00bfEn qu\u00e9 puedo ayudarte?',suggestions:['Productos','Marca blanca','Muestras gratis','Sectores','Contactar'],offline:'No he podido conectar. Ll\u00e1manos al <b>'+CFG.phone+'</b>.'},
-  en:{sub:'Cleaning products manufacturer',placeholder:'Type your question...',hello:'Hello! \u{1F44B} I\'m the <b>Instaquim</b> assistant. How can I help you?',suggestions:['Products','Private label','Free samples','Sectors','Contact'],offline:'Could not connect. Call us at <b>'+CFG.phone+'</b>.'},
-  fr:{sub:'Fabricant de produits de nettoyage',placeholder:'\u00c9crivez votre question...',hello:'Bonjour! \u{1F44B} Je suis l\'assistant d\'<b>Instaquim</b>. Comment puis-je vous aider?',suggestions:['Produits','Marque blanche','\u00c9chantillons gratuits','Secteurs','Contact'],offline:'Impossible de se connecter. Appelez-nous au <b>'+CFG.phone+'</b>.'},
-  pt:{sub:'Fabricante de produtos de limpeza',placeholder:'Escreva a sua pergunta...',hello:'Ol\u00e1! \u{1F44B} Sou o assistente da <b>Instaquim</b>. Como posso ajud\u00e1-lo?',suggestions:['Produtos','Marca branca','Amostras gr\u00e1tis','Setores','Contactar'],offline:'N\u00e3o foi poss\u00edvel conectar. Ligue para <b>'+CFG.phone+'</b>.'}
+  ca:{sub:'Fabricant de productes de neteja',placeholder:'Escriu la teva consulta...',hello:'Hola! S\u00f3c l\'assistent d\'<b>Instaquim</b>. Com us puc ajudar?',suggestions:['Productes','Marca blanca','Sectors','Distribu\u00efdors','Contactar'],offline:'No he pogut connectar. Truca al <b>'+CFG.phone+'</b>.'},
+  es:{sub:'Fabricante de productos de limpieza',placeholder:'Escribe tu consulta...',hello:'\u00a1Hola! Soy el asistente de <b>Instaquim</b>. \u00bfEn qu\u00e9 puedo ayudarle?',suggestions:['Productos','Marca blanca','Sectores','Distribuidores','Contactar'],offline:'No he podido conectar. Ll\u00e1menos al <b>'+CFG.phone+'</b>.'},
+  en:{sub:'Cleaning products manufacturer',placeholder:'Type your question...',hello:'Hello! I\'m the <b>Instaquim</b> assistant. How can I help you?',suggestions:['Products','Private label','Sectors','Distributors','Contact'],offline:'Could not connect. Call us at <b>'+CFG.phone+'</b>.'},
+  fr:{sub:'Fabricant de produits de nettoyage',placeholder:'\u00c9crivez votre question...',hello:'Bonjour! Je suis l\'assistant d\'<b>Instaquim</b>. Comment puis-je vous aider?',suggestions:['Produits','Marque blanche','Secteurs','Distributeurs','Contact'],offline:'Impossible de se connecter. Appelez-nous au <b>'+CFG.phone+'</b>.'},
+  pt:{sub:'Fabricante de produtos de limpeza',placeholder:'Escreva a sua pergunta...',hello:'Ol\u00e1! Sou o assistente da <b>Instaquim</b>. Como posso ajud\u00e1-lo?',suggestions:['Produtos','Marca branca','Setores','Distribuidores','Contactar'],offline:'N\u00e3o foi poss\u00edvel conectar. Ligue para <b>'+CFG.phone+'</b>.'}
 };
 var T=TEXTS[lang];
 
@@ -77,11 +77,11 @@ function typeMsg(text,callback){
 }
 
 var FORM_TEXTS={
-  ca:{title:'Deixa\'ns les teves dades',name:'Nom',company:'Empresa',phone:'Tel\u00e8fon',email:'Email',msg:'Missatge (opcional)',send:'Enviar',ok:'Gr\u00e0cies! Et contactarem aviat.',err:'Error en enviar. Truca al '+CFG.phone},
-  es:{title:'D\u00e9janos tus datos',name:'Nombre',company:'Empresa',phone:'Tel\u00e9fono',email:'Email',msg:'Mensaje (opcional)',send:'Enviar',ok:'\u00a1Gracias! Te contactaremos pronto.',err:'Error al enviar. Llama al '+CFG.phone},
-  en:{title:'Leave us your details',name:'Name',company:'Company',phone:'Phone',email:'Email',msg:'Message (optional)',send:'Send',ok:'Thanks! We will contact you soon.',err:'Error sending. Call '+CFG.phone},
-  fr:{title:'Laissez-nous vos coordonn\u00e9es',name:'Nom',company:'Entreprise',phone:'T\u00e9l\u00e9phone',email:'Email',msg:'Message (optionnel)',send:'Envoyer',ok:'Merci! Nous vous contacterons bient\u00f4t.',err:'Erreur d\'envoi. Appelez le '+CFG.phone},
-  pt:{title:'Deixa-nos os teus dados',name:'Nome',company:'Empresa',phone:'Telefone',email:'Email',msg:'Mensagem (opcional)',send:'Enviar',ok:'Obrigado! Vamos contactar-te em breve.',err:'Erro ao enviar. Liga para '+CFG.phone}
+  ca:{title:'Deixeu-nos les vostres dades',name:'Nom i cognoms *',company:'Empresa *',sector:'Sector / activitat',country:'Pa\u00eds / poblaci\u00f3',phone:'Tel\u00e8fon *',email:'Email *',msg:'Resum de la consulta (opcional)',consent:'Accepto el tractament de les meves dades per gestionar aquesta consulta.',send:'Enviar',ok:'Gr\u00e0cies! Us contactarem aviat.',err:'Error en enviar. Truqueu al '+CFG.phone,errReq:'Falten camps obligatoris (*) o el consentiment'},
+  es:{title:'D\u00e9jenos sus datos',name:'Nombre y apellidos *',company:'Empresa *',sector:'Sector / actividad',country:'Pa\u00eds / poblaci\u00f3n',phone:'Tel\u00e9fono *',email:'Email *',msg:'Resumen de la consulta (opcional)',consent:'Acepto el tratamiento de mis datos para gestionar esta consulta.',send:'Enviar',ok:'\u00a1Gracias! Le contactaremos pronto.',err:'Error al enviar. Llame al '+CFG.phone,errReq:'Faltan campos obligatorios (*) o el consentimiento'},
+  en:{title:'Leave us your details',name:'Full name *',company:'Company *',sector:'Sector / activity',country:'Country / city',phone:'Phone *',email:'Email *',msg:'Summary (optional)',consent:'I agree to the processing of my data to handle this enquiry.',send:'Send',ok:'Thanks! We will contact you soon.',err:'Error sending. Call '+CFG.phone,errReq:'Please fill required (*) fields and consent'},
+  fr:{title:'Laissez-nous vos coordonn\u00e9es',name:'Nom et pr\u00e9nom *',company:'Entreprise *',sector:'Secteur / activit\u00e9',country:'Pays / ville',phone:'T\u00e9l\u00e9phone *',email:'Email *',msg:'R\u00e9sum\u00e9 de la demande (optionnel)',consent:'J\'accepte le traitement de mes donn\u00e9es pour traiter cette demande.',send:'Envoyer',ok:'Merci! Nous vous contacterons bient\u00f4t.',err:'Erreur d\'envoi. Appelez le '+CFG.phone,errReq:'Champs obligatoires (*) ou consentement manquants'},
+  pt:{title:'Deixe-nos os seus dados',name:'Nome completo *',company:'Empresa *',sector:'Setor / atividade',country:'Pa\u00eds / cidade',phone:'Telefone *',email:'Email *',msg:'Resumo da consulta (opcional)',consent:'Aceito o tratamento dos meus dados para gerir esta consulta.',send:'Enviar',ok:'Obrigado! Vamos contact\u00e1-lo em breve.',err:'Erro ao enviar. Ligue para '+CFG.phone,errReq:'Faltam campos obrigat\u00f3rios (*) ou o consentimento'}
 };
 
 function showLeadForm(){
@@ -91,28 +91,34 @@ function showLeadForm(){
   bbl.innerHTML='<div class="cb-form-title">'+FT.title+'</div>'+
     '<input type="text" id="lf-name" placeholder="'+FT.name+'">'+
     '<input type="text" id="lf-company" placeholder="'+FT.company+'">'+
+    '<input type="text" id="lf-sector" placeholder="'+FT.sector+'">'+
+    '<input type="text" id="lf-country" placeholder="'+FT.country+'">'+
     '<input type="tel" id="lf-phone" placeholder="'+FT.phone+'">'+
     '<input type="email" id="lf-email" placeholder="'+FT.email+'">'+
     '<textarea id="lf-msg" placeholder="'+FT.msg+'" rows="2"></textarea>'+
+    '<label style="font-size:11px;color:#666;display:flex;align-items:flex-start;gap:6px;margin-top:4px;cursor:pointer"><input type="checkbox" id="lf-consent" style="margin-top:2px;width:auto"><span>'+FT.consent+'</span></label>'+
     '<button id="lf-send">'+FT.send+'</button>';
   d.appendChild(bbl);bod.appendChild(d);bod.scrollTop=bod.scrollHeight;
   document.getElementById('lf-send').addEventListener('click',function(){
     var name=document.getElementById('lf-name').value.trim();
     var company=document.getElementById('lf-company').value.trim();
+    var sector=document.getElementById('lf-sector').value.trim();
+    var country=document.getElementById('lf-country').value.trim();
     var phone=document.getElementById('lf-phone').value.trim();
     var email=document.getElementById('lf-email').value.trim();
     var msg=document.getElementById('lf-msg').value.trim();
-    if(!name||(!phone&&!email)){alert(FT.name+' + ('+FT.phone+' o '+FT.email+')');return}
+    var consent=document.getElementById('lf-consent').checked;
+    if(!name||!company||!phone||!email||!consent){alert(FT.errReq);return}
     var btn=document.getElementById('lf-send');btn.disabled=true;btn.textContent='...';
     fetch(API_URL+'/lead',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:name,company:company,phone:phone,email:email,message:msg,lang:lang,sessionId:sessionId,conversation:chatHistory})
+      body:JSON.stringify({name:name,company:company,sector:sector,country:country,phone:phone,email:email,message:msg,consent:consent,lang:lang,sessionId:sessionId,conversation:chatHistory})
     }).then(function(r){return r.json()}).then(function(data){
-      bbl.innerHTML='<div class="cb-form-ok">\u2705 '+FT.ok+'</div>';
+      bbl.innerHTML='<div class="cb-form-ok">'+FT.ok+'</div>';
       if(typeof gtag==='function')gtag('event','generate_lead',{event_category:'chatbot'});
     }).catch(function(){
-      bbl.innerHTML='<div class="cb-form-err">\u26a0\ufe0f '+FT.err+'</div>';
+      bbl.innerHTML='<div class="cb-form-err">'+FT.err+'</div>';
     });
   });
 }
